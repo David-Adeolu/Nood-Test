@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<body>
+    <div class="col-lg-7 mx-auto mt-lg-5">
+        <h1 class="text-center">SIGN UP PAGE</h1>
+        <form action="user" method="post">
+            <input type="text" placeholder="firstname" name="firstname" class="form-control w-100 my-2">
+            <input type="text" placeholder="lastname" name="lastname" class="form-control w-100 my-2">
+            <input type="text" placeholder="email" name="email" class="form-control w-100 my-2">
+            <input type="text" placeholder="password" name="password" class="form-control w-100 my-2">
+            <button type="submit" class="w-100 bg-danger">submit</button>
+        </form>
+    </div>
+
+    <table class="w-100 text-center table table-bordered table-striped>
+        <thead>
+            <tr class="w-100">
+                <th class="col-3">S/NO</th>
+                <th class="col-3">First Name</th>
+                <th class="col-3">Last Name</th>
+                <th class="col-3">Email</th>
+                <th class="col-3">Password</th>
+                <th class="col-3">Action</th>
+            </tr>
+        </thead>
+        
+            <% for( let index = 0; index < userDetails.length; index++ ) { %>
+            <tbody>
+                <tr>
+                    <td class=" col-3"><%= index+1 %></td>
+                <td class=" col-3"><%= userDetails[index].firstname %></td>
+                <td class=" col-3"><%= userDetails[index].lastname %></td>
+                <td class=" col-3"><%= userDetails[index].email %></td>
+                <td>
+                    <form action="/delete" method="post">
+                        <input type="hidden" value=<%= userDetails[index].email %> name="newEmail">
+                    <button class="btn btn-danger">DElete</button>
+                    </form>
+                   <form action="/edit" method="post">
+                    <input type="hidden" value=<%= userDetails[index].email %> name="newEmail">
+                    <button class="btn btn-info">Edit</button>
+                   </form>
+                </td>
+                </tr>
+                
+            </tbody>
+            <% } %>
+         
+        
+        
+    </table>
+    
+</body>
+</html>
